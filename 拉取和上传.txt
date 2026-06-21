@@ -1,0 +1,17 @@
+下次直接这样说我就能一步到位:
+
+下载 (开发板 > WSL2):
+192.168.137.100 是开发板，FTP 用户 root 密码 lzy2626cg，从 /home/root/项目名/ 下载到 ~/embedded-projects/
+
+上传 (WSL2 > 开发板):
+把 ~/embedded-projects/xxx 上传到开发板 192.168.137.100 的 /home/root/，FTP 用户 root 密码 lzy2626cg
+
+核心就是一句话里包含: IP + 协议(FTP) + 账号密码 + 源路径 + 目标路径
+
+WSL2 里对应的命令就是:
+
+# 下载 (开发板 > WSL2)
+wget -r -nH --cut-dirs=1 --user=root --password=lzy2626cg ftp://192.168.137.100/项目名/
+
+# 上传 (WSL2 > 开发板，需装 ncftp)
+ncftpput -R -u root -p lzy2626cg 192.168.137.100 /home/root/ ./本地文件
